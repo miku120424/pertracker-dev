@@ -184,7 +184,7 @@ class _HomeViewState extends State<HomeView> {
                       );
                     },
                     shrinkWrap:
-                        true, // Use shrinkWrap to size ListView to its children
+                        true,
                   )
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -316,11 +316,14 @@ class MySlider extends StatelessWidget {
                       ),
                     );
                   } else if (texts[i] == "Sign Out") {
-                    Navigator.of(context).push(
-                      CupertinoPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    );
+                    Hive.close().then((_) {
+                      Navigator.of(context).pushAndRemoveUntil(
+                        CupertinoPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                        (route) => false,
+                      );
+                    });
                   }
                 },
                 child: Container(

@@ -5,6 +5,7 @@ import 'package:flutter_hive_tdo/models/users.dart';
 import 'package:flutter_hive_tdo/view/home/login.dart';
 import 'package:flutter_hive_tdo/view/home/home_view.dart'; // Add this import
 import 'package:hive_flutter/hive_flutter.dart';
+import 'dart:math'; // Import for generating random ID
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -17,7 +18,6 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _idController = TextEditingController();
 
   late Box<User> _userBox;
 
@@ -31,6 +31,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     _userBox = await Hive.openBox<User>('users');
   }
 
+  String _generateUserId() {
+    var random = Random();
+    return (random.nextInt(900000) + 100000).toString();
+  }
+
   void _register() async {
     if (!_userBox.isOpen) {
       await _openUserBox();
@@ -38,7 +43,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     String username = _usernameController.text.trim();
     String password = _passwordController.text.trim();
-    String id = _idController.text.trim();
+    String id = _generateUserId();
 
     User? existingUser;
     try {
@@ -58,7 +63,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         id: id,
         username: username,
         password: password,
-        userLevel: UserLevel.employee, // Default value
+        userLevel: UserLevel.employee,
       );
       await _userBox.add(newUser);
 
@@ -106,13 +111,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   obscureText: true,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: TextField(
-                  controller: _idController,
-                  decoration: const InputDecoration(labelText: 'ID'),
-                ),
-              ),
               const SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
@@ -149,7 +147,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
-    _idController.dispose();
     super.dispose();
   }
 }

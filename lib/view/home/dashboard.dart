@@ -27,87 +27,137 @@ class _TaskDashboardState extends State<TaskDashboard> {
           final completedTasks = tasks.where((task) => task.isCompleted).length;
           final incompleteTasks = tasks.length - completedTasks;
 
-          // Group tasks by date
           final tasksPerDate = <String, int>{};
           for (var task in tasks) {
             final dateKey = DateFormat.yMd().format(task.createdAtDate);
             tasksPerDate[dateKey] = (tasksPerDate[dateKey] ?? 0) + 1;
           }
 
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Card(
-                  elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Total Tasks',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 30),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            _buildCircularSummaryCard(
-                                'Completed', completedTasks, tasks.length),
-                            _buildCircularSummaryCard(
-                                'Incomplete', incompleteTasks, tasks.length),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Card(
-                  elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Tasks Per Due Date',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 200,
-                          child: ListView.builder(
-                            itemCount: tasksPerDate.length,
-                            itemBuilder: (context, index) {
-                              final date = tasksPerDate.keys.elementAt(index);
-                              final count = tasksPerDate[date]!;
-                              return ListTile(
-                                title: Text(date),
-                                trailing: Text('$count tasks'),
-                              );
-                            },
+          final tasksPerEmployee = <String, int>{};
+          for (var task in tasks) {
+            final employeeName = task.userId;
+            tasksPerEmployee[employeeName] =
+                (tasksPerEmployee[employeeName] ?? 0) + 1;
+          }
+
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Card(
+                    elevation: 4,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Total Tasks',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              _buildCircularSummaryCard(
+                                  'Completed', completedTasks, tasks.length),
+                              _buildCircularSummaryCard(
+                                  'Incomplete', incompleteTasks, tasks.length),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 8),
+                  Card(
+                    elevation: 4,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Tasks Per Due Date',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          SizedBox(
+                            height: 200,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: tasksPerDate.length,
+                              itemBuilder: (context, index) {
+                                final date = tasksPerDate.keys.elementAt(index);
+                                final count = tasksPerDate[date]!;
+                                return ListTile(
+                                  title: Text(date),
+                                  trailing: Text('$count tasks'),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Card(
+                    elevation: 4,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Tasks By Employee',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          SizedBox(
+                            height: 200,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: tasksPerEmployee.length,
+                              itemBuilder: (context, index) {
+                                final employee =
+                                    tasksPerEmployee.keys.elementAt(index);
+                                final count = tasksPerEmployee[employee]!;
+                                return ListTile(
+                                  title: Text(employee),
+                                  trailing: Text('$count tasks'),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },
