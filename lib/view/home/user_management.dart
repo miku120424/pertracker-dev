@@ -40,6 +40,7 @@ class _UserManagementPageState extends State<UserManagementPage> {
         await box.putAt(index, user);
       }
 
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
     }
   }

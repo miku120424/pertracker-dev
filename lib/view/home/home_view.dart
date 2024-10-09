@@ -8,6 +8,7 @@ import 'package:flutter_hive_tdo/models/task.dart';
 import 'package:flutter_hive_tdo/models/users.dart';
 import 'package:flutter_hive_tdo/view/home/dashboard.dart';
 import 'package:flutter_hive_tdo/view/home/login.dart';
+import 'package:flutter_hive_tdo/view/home/reports.dart';
 import 'package:flutter_hive_tdo/view/home/user_management.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
@@ -183,8 +184,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       );
                     },
-                    shrinkWrap:
-                        true,
+                    shrinkWrap: true,
                   )
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -304,9 +304,7 @@ class MySlider extends StatelessWidget {
                   } else if (texts[i] == "Reports") {
                     Navigator.of(context).push(
                       CupertinoPageRoute(
-                        builder: (context) => HomeView(
-                          user: user,
-                        ),
+                        builder: (context) => EmployeeReport(),
                       ),
                     );
                   } else if (texts[i] == "User Management") {
@@ -317,6 +315,7 @@ class MySlider extends StatelessWidget {
                     );
                   } else if (texts[i] == "Sign Out") {
                     Hive.close().then((_) {
+                      // ignore: use_build_context_synchronously
                       Navigator.of(context).pushAndRemoveUntil(
                         CupertinoPageRoute(
                           builder: (context) => const LoginScreen(),
