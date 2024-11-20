@@ -22,14 +22,16 @@ class _EmployeeReportState extends State<EmployeeReport> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Employee Task Report', style: TextStyle(color: Colors.black, fontSize: 24),),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.file_download),
-            onPressed: _generateCSVReport,
+          title: const Text(
+            'Employee Task Report',
+            style: TextStyle(color: Colors.black, fontSize: 24),
           ),
-        ]
-      ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.file_download),
+              onPressed: _generateCSVReport,
+            ),
+          ]),
       body: ValueListenableBuilder<Box<Task>>(
         valueListenable: _dataStore.listenToTasks(),
         builder: (context, box, _) {

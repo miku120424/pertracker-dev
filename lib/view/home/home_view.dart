@@ -7,7 +7,6 @@ import 'package:flutter_hive_tdo/main.dart';
 import 'package:flutter_hive_tdo/models/task.dart';
 import 'package:flutter_hive_tdo/models/users.dart';
 import 'package:flutter_hive_tdo/view/home/dashboard.dart';
-import 'package:flutter_hive_tdo/view/home/dashboard_test.dart';
 import 'package:flutter_hive_tdo/view/home/login.dart';
 import 'package:flutter_hive_tdo/view/home/reports.dart';
 import 'package:flutter_hive_tdo/view/home/user_management.dart';
@@ -239,7 +238,6 @@ class MySlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textTheme = Theme.of(context).textTheme;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 90),
       decoration: const BoxDecoration(
@@ -302,7 +300,7 @@ class MySlider extends StatelessWidget {
                   } else if (texts[i] == "Reports") {
                     Navigator.of(context).push(
                       CupertinoPageRoute(
-                        builder: (context) => TaskDashboardTest(),
+                        builder: (context) => EmployeeReport(),
                       ),
                     );
                   } else if (texts[i] == "User Management") {
