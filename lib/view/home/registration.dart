@@ -99,6 +99,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: TextField(
+                  keyboardType: TextInputType.text,
                   controller: _usernameController,
                   decoration: const InputDecoration(labelText: 'Username'),
                 ),

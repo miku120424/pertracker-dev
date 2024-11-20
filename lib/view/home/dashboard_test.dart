@@ -5,26 +5,28 @@ import 'package:flutter_hive_tdo/utils/colors.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 
-class TaskDashboard extends StatefulWidget {
-  const TaskDashboard({super.key});
+class TaskDashboardTest extends StatefulWidget {
+  const TaskDashboardTest({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _TaskDashboardState createState() => _TaskDashboardState();
+  _TaskDashboardTestState createState() => _TaskDashboardTestState();
 }
 
-class _TaskDashboardState extends State<TaskDashboard> {
+class _TaskDashboardTestState extends State<TaskDashboardTest> {
   final HiveDataStore _dataStore = HiveDataStore();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(),
+      appBar: AppBar(),
       body: ValueListenableBuilder<Box<Task>>(
         valueListenable: _dataStore.listenToTasks(),
         builder: (context, box, _) {
           final tasks = box.values.toList();
+
           final completedTasks = tasks.where((task) => task.isCompleted).length;
+
           final incompleteTasks = tasks.length - completedTasks;
 
           final tasksPerDate = <String, int>{};
@@ -39,24 +41,23 @@ class _TaskDashboardState extends State<TaskDashboard> {
             tasksPerEmployee[employeeName] =
                 (tasksPerEmployee[employeeName] ?? 0) + 1;
           }
-
           return SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Card(
                     elevation: 5,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
                           const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Total Tasks',
+                                'Total Tasks Waru',
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center,
@@ -83,37 +84,38 @@ class _TaskDashboardState extends State<TaskDashboard> {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Tasks Per Due Date',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          SizedBox(
-                            height: 200,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: tasksPerDate.length,
-                              itemBuilder: (context, index) {
-                                final date = tasksPerDate.keys.elementAt(index);
-                                final count = tasksPerDate[date]!;
-                                return ListTile(
-                                  title: Text(date),
-                                  trailing: Text('$count tasks'),
-                                );
-                              },
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Tasks Per Due Date',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
+                            const SizedBox(height: 10),
+                            SizedBox(
+                              height: 200,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: tasksPerDate.length,
+                                itemBuilder: (context, index) {
+                                  final date =
+                                      tasksPerDate.keys.elementAt(index);
+                                  final count = tasksPerDate[date]!;
+                                  return ListTile(
+                                    title: Text(date),
+                                    trailing: Text('$count tasks'),
+                                  );
+                                },
+                              ),
+                            ),
+                          ]),
                     ),
                   ),
                   const SizedBox(height: 8),
