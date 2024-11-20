@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_hive_tdo">
+    package="com.example.fendhaaroo">
 
     <application
-        android:label="flutter_hive_tdo"
+        android:label="fendhaaroo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:enableOnBackInvokedCallback="true"> <!-- This should be here -->

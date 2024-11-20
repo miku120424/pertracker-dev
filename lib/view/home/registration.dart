@@ -1,9 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter_hive_tdo/models/users.dart';
-import 'package:flutter_hive_tdo/view/home/login.dart';
-import 'package:flutter_hive_tdo/view/home/home_view.dart'; // Add this import
+import 'package:fendhaaroo/models/users.dart';
+import 'package:fendhaaroo/view/home/login.dart';
+import 'package:fendhaaroo/view/home/home_view.dart'; // Add this import
 import 'package:hive_flutter/hive_flutter.dart';
 import 'dart:math'; // Import for generating random ID
 

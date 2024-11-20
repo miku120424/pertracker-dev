@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hive_tdo/models/users.dart';
-import 'package:flutter_hive_tdo/view/home/home_view.dart';
-import 'package:flutter_hive_tdo/view/home/registration.dart';
+import 'package:fendhaaroo/models/users.dart';
+import 'package:fendhaaroo/view/home/home_view.dart';
+import 'package:fendhaaroo/view/home/registration.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class LoginScreen extends StatefulWidget {

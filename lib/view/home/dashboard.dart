@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hive_tdo/data/hive_data_store.dart';
-import 'package:flutter_hive_tdo/models/task.dart';
-import 'package:flutter_hive_tdo/utils/colors.dart';
+import 'package:fendhaaroo/data/hive_data_store.dart';
+import 'package:fendhaaroo/models/task.dart';
+import 'package:fendhaaroo/utils/colors.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 

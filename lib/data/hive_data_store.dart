@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_hive_tdo/models/task.dart';
-import 'package:flutter_hive_tdo/models/users.dart';
+import 'package:fendhaaroo/models/task.dart';
+import 'package:fendhaaroo/models/users.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveDataStore {

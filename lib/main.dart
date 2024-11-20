@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hive_tdo/models/users.dart';
-import 'package:flutter_hive_tdo/view/home/registration.dart';
+import 'package:fendhaaroo/models/users.dart';
+import 'package:fendhaaroo/view/home/registration.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 ///
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'PerTracker',
+      title: 'Fendhaaroo',
       theme: ThemeData(
         textTheme: const TextTheme(
           displayLarge: TextStyle(
