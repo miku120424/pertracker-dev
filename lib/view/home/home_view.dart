@@ -7,6 +7,7 @@ import 'package:flutter_hive_tdo/main.dart';
 import 'package:flutter_hive_tdo/models/task.dart';
 import 'package:flutter_hive_tdo/models/users.dart';
 import 'package:flutter_hive_tdo/view/home/dashboard.dart';
+import 'package:flutter_hive_tdo/view/home/dashboard_test.dart';
 import 'package:flutter_hive_tdo/view/home/login.dart';
 import 'package:flutter_hive_tdo/view/home/reports.dart';
 import 'package:flutter_hive_tdo/view/home/user_management.dart';
@@ -250,35 +251,32 @@ class MySlider extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(
-            height: 200,
-            child: DrawerHeader(
-              margin: EdgeInsets.zero,
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(4),
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        border:
-                            Border.all(color: Colors.white.withOpacity(0.5))),
-                    child: const CircleAvatar(
-                      backgroundColor: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    user.username,
-                    style: textTheme.displayMedium,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // DrawerHeader(
+          //   margin: EdgeInsets.zero,
+          //   child: Column(
+          //     children: [
+          //       Container(
+          //         padding: const EdgeInsets.all(4),
+          //         width: 80,
+          //         height: 80,
+          //         decoration: BoxDecoration(
+          //             borderRadius: BorderRadius.circular(50),
+          //             border:
+          //                 Border.all(color: Colors.white.withOpacity(0.5))),
+          //         child: const CircleAvatar(
+          //           backgroundColor: Colors.white,
+          //         ),
+          //       ),
+          //       const SizedBox(
+          //         height: 20,
+          //       ),
+          //       Text(
+          //         user.username,
+          //         style: textTheme.displayMedium,
+          //       ),
+          //     ],
+          //   ),
+          // ),
           const Spacer(),
           ListView.builder(
             itemCount: icons.length,
@@ -304,7 +302,7 @@ class MySlider extends StatelessWidget {
                   } else if (texts[i] == "Reports") {
                     Navigator.of(context).push(
                       CupertinoPageRoute(
-                        builder: (context) => EmployeeReport(),
+                        builder: (context) => TaskDashboardTest(),
                       ),
                     );
                   } else if (texts[i] == "User Management") {
